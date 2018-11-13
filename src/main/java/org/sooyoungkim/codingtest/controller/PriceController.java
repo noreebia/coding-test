@@ -10,24 +10,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "api/v1/data/currency")
 public class PriceController {
-	
+
 	@Autowired
 	PriceService priceService;
 
-	@RequestMapping(value = "/")
-	public Result getAllPrices () {
+	@RequestMapping(value= {"", "/"})
+	public Result getAllPrices() {
 		try {
 			return new Result(true, priceService.getMultiplePairs());
-		} catch(Exception e) {
+		} catch (Exception e) {
 			return new Result(false, null);
 		}
 	}
-	
+
 	@RequestMapping(value = "/{coinName}")
 	public Result getPriceOf(@PathVariable String coinName) {
 		try {
 			return new Result(true, priceService.getSinglePair(coinName));
-		} catch(Exception e) {
+		} catch (Exception e) {
 			return new Result(false, null);
 		}
 	}
