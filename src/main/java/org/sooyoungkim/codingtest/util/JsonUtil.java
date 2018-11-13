@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JsonUtil {
 
+	// Reads json file and returns json object
 	public JSONObject readJsonFile(String fileName) {
 		JSONParser parser = new JSONParser();
 		Object obj = null;
@@ -21,10 +22,10 @@ public class JsonUtil {
 		}
 		return (JSONObject) obj;
 	}
-	
+
 	public JSONObject getPairInfoOnAllExchanges(JSONObject jsonObject, String pair) {
 		JSONObject unfilteredPairInfo = (JSONObject) jsonObject.get(pair);
-		
+
 		JSONObject filteredPairInfo = new JSONObject();
 		filteredPairInfo.put("bithumb", getPairInfoOnSingleExchange(unfilteredPairInfo, "bithumb"));
 		filteredPairInfo.put("bitfinex", getPairInfoOnSingleExchange(unfilteredPairInfo, "bitfinex"));
@@ -32,7 +33,7 @@ public class JsonUtil {
 		filteredPairInfo.put("coinone", getPairInfoOnSingleExchange(unfilteredPairInfo, "coinone"));
 		return filteredPairInfo;
 	}
-	
+
 	private JSONObject getPairInfoOnSingleExchange(JSONObject jsonObject, String exchange) {
 		JSONObject exchangeInfo = (JSONObject) jsonObject.get(exchange);
 		JSONObject originPairAndLastPrice = new JSONObject();
