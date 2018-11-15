@@ -14,7 +14,7 @@ public class PriceController {
 	@Autowired
 	PriceService priceService;
 
-	@RequestMapping(value= {"", "/"})
+	@RequestMapping(value = "") 
 	public Result getAllPrices() {
 		try {
 			return new Result(true, priceService.getMultiplePairs());
